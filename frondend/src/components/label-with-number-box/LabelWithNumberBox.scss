@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 24px;
+    gap: 20px;
+    max-width: 350px;
+    max-height: 234px;
+    border-radius: 8px;
+    align-items: center;
+    color: #ffffff;
+
+    .text {
+        font-size: 24px;
+    }
+
+    .number {
+        font-size: 60px;
+    }
+}
+
+.color-red {
+    background-color: #e84e4e;
+}
+
+.color-green {
+    background-color: #00a58b;
+}
+
+.color-blue {
+    background-color: #0070a4;
+}
