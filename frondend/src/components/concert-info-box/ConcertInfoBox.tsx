@@ -11,7 +11,7 @@ type ConcertInfoBoxProps = {
     totalSeats: number;
     isSelected: boolean;
     disabled: boolean;
-    onClick: () => void;
+    handleOnClick: () => void;
 };
 
 const BUTTON_MAPPER = {
@@ -38,7 +38,7 @@ export default function ConcertInfoBox({
     totalSeats,
     isSelected,
     disabled,
-    onClick,
+    handleOnClick,
 }: ConcertInfoBoxProps): ReactElement {
     const { isAdmin } = useRole();
 
@@ -52,7 +52,9 @@ export default function ConcertInfoBox({
 
     return (
         <div className="concert-info-box-container">
-            <div className="title">{title}</div>
+            <div className="title" onClick={handleOnClick}>
+                {title}
+            </div>
             <div className="line" />
             <div className="description">{description}</div>
             <div className="concert-footer">
@@ -65,7 +67,7 @@ export default function ConcertInfoBox({
                     label={button.label}
                     buttonColor={button.color}
                     disabled={disabled}
-                    onClick={onClick}
+                    onClick={handleOnClick}
                 />
             </div>
         </div>
