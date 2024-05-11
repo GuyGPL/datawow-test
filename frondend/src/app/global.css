@@ -1,0 +1,14 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../public/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
