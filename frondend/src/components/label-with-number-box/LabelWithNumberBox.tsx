@@ -19,7 +19,7 @@ export default function LabelWithNumberBox({
 
     return (
         <div className={`container color-${bgColor}`}>
-            <Icon size={40} />
+            <Icon size={40} color="#ffffff" />
             <div className="text">{label}</div>
             <div className="number">{number}</div>
         </div>

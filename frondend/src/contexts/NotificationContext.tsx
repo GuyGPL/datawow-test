@@ -23,7 +23,6 @@ export const NotificationProvider = ({ children }: PropsWithChildren) => {
     const notificationSuccess = (text: string, duration?: number) => {
         setMessage(text);
         setNotificationType(STATES.SUCCESS);
-        console.log("success called");
         clear(duration);
     };
 
@@ -37,7 +36,6 @@ export const NotificationProvider = ({ children }: PropsWithChildren) => {
         setTimeout(() => {
             setMessage("");
             setNotificationType(null);
-            console.log("clear called");
         }, duration * 1000);
     };
 
