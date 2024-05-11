@@ -1,13 +1,9 @@
 import Notification from "@/components/notification/Notification";
+import { STATES } from "@/constants/notification-type";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
-const STATES = {
-    SUCCESS: "success",
-    ERROR: "error",
-};
-
 type NotificationContextValues = {
-    notification: string | null;
+    notificationType: string | null;
     message: string;
     notificationSuccess: (text: string) => void;
     notificationError: (text: string) => void;
@@ -19,28 +15,28 @@ const NotificationContext = createContext<
 >(undefined);
 
 export const NotificationProvider = ({ children }: PropsWithChildren) => {
-    const [notification, setNotification] = useState<string | null>(null);
+    const [notificationType, setNotificationType] = useState<string | null>(
+        null
+    );
     const [message, setMessage] = useState<string>("");
 
     const notificationSuccess = (text: string, duration?: number) => {
-        window.scroll(0, 0);
         setMessage(text);
-        setNotification(STATES.SUCCESS);
+        setNotificationType(STATES.SUCCESS);
         console.log("success called");
         clear(duration);
     };
 
     const notificationError = (text: string, duration?: number) => {
-        window.scroll(0, 0);
         setMessage(text);
-        setNotification(STATES.ERROR);
+        setNotificationType(STATES.ERROR);
         clear(duration);
     };
 
     const clear = (duration: number = 3) => {
         setTimeout(() => {
             setMessage("");
-            setNotification(null);
+            setNotificationType(null);
             console.log("clear called");
         }, duration * 1000);
     };
@@ -51,7 +47,7 @@ export const NotificationProvider = ({ children }: PropsWithChildren) => {
                 notificationSuccess,
                 notificationError,
                 clear,
-                notification,
+                notificationType,
                 message,
             }}
         >
