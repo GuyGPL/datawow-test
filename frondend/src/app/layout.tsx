@@ -3,7 +3,9 @@ import MainLayout from "@/layouts/MainLayout";
 import "./global.css";
 import { UserProvider } from "@/contexts/UserContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
-import Notification from "@/components/notification/Notification";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export default function RootLayout({
     children,
@@ -13,11 +15,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <UserProvider>
-                    <NotificationProvider>
-                        <MainLayout>{children}</MainLayout>
-                    </NotificationProvider>
-                </UserProvider>
+                <QueryClientProvider client={queryClient}>
+                    <UserProvider>
+                        <NotificationProvider>
+                            <MainLayout>{children}</MainLayout>
+                        </NotificationProvider>
+                    </UserProvider>
+                </QueryClientProvider>
             </body>
         </html>
     );
