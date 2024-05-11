@@ -1,0 +1,46 @@
+.info-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.concert-container {
+    .tabs {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 40px;
+
+        .tab {
+            padding: 10px;
+            font-size: 24px;
+            font-weight: 600;
+            color: #5c5c5c;
+            cursor: pointer;
+
+            &.active {
+                color: #1692ec;
+                border-bottom: 1px solid #1692ec;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .info-container {
+        grid-template-columns: 1fr 1fr;
+
+        & *:first-child {
+            grid-column: span 2;
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .info-container {
+        grid-template-columns: 1fr;
+    }
+    .info-container > *:first-child {
+        grid-column: span 1;
+    }
+}
