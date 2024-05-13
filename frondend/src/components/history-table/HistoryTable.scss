@@ -1,0 +1,26 @@
+.history-container {
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .header-cell {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: start;
+
+        .title {
+            font-weight: 600;
+        }
+    }
+
+    .row {
+        border-bottom: 1px solid black;
+    }
+
+    .cell {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: start;
+    }
+}
