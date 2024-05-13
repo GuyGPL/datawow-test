@@ -3,6 +3,7 @@ import { createConcert } from "@/services/concerts.service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FormEvent, useState } from "react";
 
+// TODO integrate with ConcertFormBox
 export const useConcertForm = () => {
     const [concertName, setConcertName] = useState<string>("");
     const [seats, setSeats] = useState<string>("");
@@ -30,8 +31,8 @@ export const useConcertForm = () => {
             setSeats("");
             setDescription("");
             notificationSuccess("Create concert successfully");
-        } catch (error) {
-            notificationError("Error submitting concert");
+        } catch {
+            notificationError("Something went wring, please try again");
         }
     };
 

@@ -1,21 +1,17 @@
-import {
-    fetchConcertList,
-    fetchConcertSummary,
-} from "@/services/concerts.service";
+import { fetchConcerts } from "@/services/concerts.service";
+import { ConcertsResponse } from "@/types/concerts.response.dto";
 import { useQuery } from "@tanstack/react-query";
 
-type UseConcertReturnType = {};
+type UseConcertReturnType = {
+    concertList: ConcertsResponse | undefined;
+};
 
+// TODO integrate hook with HomeContainer
 export default function useConcert(): UseConcertReturnType {
-    const { data: concertSummary } = useQuery({
-        queryKey: ["concerts", "summary"],
-        queryFn: async () => await fetchConcertSummary(),
-    });
-
     const { data: concertList } = useQuery({
         queryKey: ["concerts"],
-        queryFn: async () => await fetchConcertList(),
+        queryFn: async () => await fetchConcerts(),
     });
 
-    return { concertSummary, concertList };
+    return { concertList };
 }

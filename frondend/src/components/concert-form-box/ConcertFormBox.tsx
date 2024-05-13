@@ -6,11 +6,10 @@ import { FaMusic } from "react-icons/fa";
 import { useConcertForm } from "@/hooks/useConcertForm";
 
 export default function ConcertFormBox(): ReactElement {
-    const { handleOnSubmit, setConcertName, setSeats, setDescription } =
-        useConcertForm();
+    const { setConcertName, setSeats, setDescription } = useConcertForm();
 
     return (
-        <form className="concert-form-box-container" onSubmit={handleOnSubmit}>
+        <form className="concert-form-box-container" onSubmit={undefined}>
             <div className="title">Create</div>
             <div className="line"></div>
             <div className="concert-form">
