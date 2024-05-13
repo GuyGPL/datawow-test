@@ -1,8 +1,6 @@
-// reservation.entity.ts
-
 import { ConcertEntity } from "src/app/concerts/entitles/concert.entity";
-import { ReservationStatusEnum } from "src/enums/reservation-status.enum";
 import { UserEntity } from "src/app/users/entities/user.entity";
+import { ReservationStatusEnum } from "src/enums/reservation-status.enum";
 import {
     Entity,
     Column,
@@ -10,6 +8,7 @@ import {
     ManyToOne,
     JoinColumn,
     CreateDateColumn,
+    Index,
 } from "typeorm";
 
 @Entity("reservation")
@@ -18,18 +17,20 @@ export class ReservationEntity {
     id!: string;
 
     @Column({ name: "user_id", type: "uuid" })
+    @Index()
     userId!: string;
 
-    @ManyToOne(() => UserEntity, { eager: true })
+    @ManyToOne(() => UserEntity)
     @JoinColumn({ name: "user_id" })
-    _user: UserEntity;
+    _user?: UserEntity;
 
     @Column({ name: "concert_id", type: "uuid" })
-    concert_id!: string;
+    @Index()
+    concertId!: string;
 
-    @ManyToOne(() => ConcertEntity, { eager: true })
+    @ManyToOne(() => ConcertEntity)
     @JoinColumn({ name: "concert_id" })
-    _concert: ConcertEntity;
+    _concert?: ConcertEntity;
 
     @Column({
         type: "enum",
