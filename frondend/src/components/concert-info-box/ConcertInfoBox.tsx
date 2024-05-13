@@ -7,7 +7,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 type ConcertInfoBoxProps = {
     title: string;
-    description: string;
+    description?: string;
     totalSeats: number;
     isSelected: boolean;
     disabled: boolean;
@@ -56,7 +56,7 @@ export default function ConcertInfoBox({
                 {title}
             </div>
             <div className="line" />
-            <div className="description">{description}</div>
+            <div className="description">{description ?? "-"}</div>
             <div className="concert-footer">
                 <div className="seats">
                     <IoPersonOutline />

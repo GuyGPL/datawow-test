@@ -5,7 +5,7 @@ import { IconType } from "react-icons";
 type LabelWithNumberBoxProps = {
     icon: IconType;
     label: string;
-    number: number;
+    number?: number;
     bgColor: string;
 };
 
@@ -21,7 +21,7 @@ export default function LabelWithNumberBox({
         <div className={`container color-${bgColor}`}>
             <Icon size={40} color="#ffffff" />
             <div className="text">{label}</div>
-            <div className="number">{number}</div>
+            <div className="number">{number ?? "-"}</div>
         </div>
     );
 }
