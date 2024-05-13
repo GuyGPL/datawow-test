@@ -15,6 +15,7 @@ import {
 } from "./dto/reservation.request.dto";
 import { ReservationEntity } from "./entities/reservation.entity";
 import { ZodValidatorPipe } from "src/validations/zod-validator.pipe";
+import { ReservationResponse } from "./dto/reservation.response.dto";
 
 @Controller("reservations")
 export class ReservationsController {
@@ -29,14 +30,14 @@ export class ReservationsController {
     }
 
     @Get()
-    async findAll(): Promise<ReservationEntity[]> {
+    async findAll(): Promise<ReservationResponse[]> {
         return this.reservationsService.findAll();
     }
 
     @Get("/users/:userId")
     async findByUserId(
         @Param("userId") userId: string
-    ): Promise<ReservationEntity[]> {
+    ): Promise<ReservationResponse[]> {
         return this.reservationsService.findByUserId(userId);
     }
 }

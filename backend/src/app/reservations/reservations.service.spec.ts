@@ -4,6 +4,8 @@ import { ReservationsRepository } from "./reservations.repository";
 import { CreateReservationDto } from "./dto/reservation.request.dto";
 import { ReservationEntity } from "./entities/reservation.entity";
 import { ReservationStatusEnum } from "src/enums/reservation-status.enum";
+import { UserEntity } from "../users/entities/user.entity";
+import { ConcertEntity } from "../concerts/entitles/concert.entity";
 
 describe("ReservationsService", () => {
     let service: ReservationsService;
@@ -52,34 +54,95 @@ describe("ReservationsService", () => {
     describe("findAll", () => {
         it("should return all reservations", async () => {
             const reservations: ReservationEntity[] = [
-                new ReservationEntity({ id: "1", userId: "1" }),
-                new ReservationEntity({ id: "2", userId: "2" }),
+                new ReservationEntity({
+                    id: "1",
+                    userId: "665f24eb-89c7-4cfa-ae8b-bd4649a91c43",
+                    _user: new UserEntity({
+                        id: "665f24eb-89c7-4cfa-ae8b-bd4649a91c43",
+                        firstName: "john",
+                        lastName: "sara",
+                    }),
+                    concertId: "78e1d771-7aed-4e51-9e4f-d256d135c914",
+                    _concert: new ConcertEntity({ name: "concert two" }),
+                }),
+                new ReservationEntity({
+                    id: "2",
+                    userId: "665f24eb-89c7-4cfa-ae8b-bd4649a91c43",
+                    _user: new UserEntity({
+                        id: "665f24eb-89c7-4cfa-ae8b-bd4649a91c43",
+                        firstName: "john",
+                        lastName: "sara",
+                    }),
+                    concertId: "3dd6965f-2815-4b5a-b9e6-1d0ab1984f77",
+                    _concert: new ConcertEntity({
+                        name: "concert one",
+                    }),
+                }),
             ];
             jest.spyOn(repository, "findAll").mockResolvedValue(reservations);
-            // Call the service method
+
             const result = await service.findAll();
 
-            // Assertions
-            expect(result).toEqual(reservations);
+            expect(result).toEqual(
+                reservations.map((reservation) => ({
+                    reservationId: reservation.id,
+                    concertName: reservation._concert.name,
+                    userFirstName: reservation._user.firstName,
+                    userLastName: reservation._user.lastName,
+                    createdAt: reservation.createdAt,
+                    status: reservation.status,
+                }))
+            );
         });
     });
 
     describe("findByUserId", () => {
         it("should return reservations by user ID", async () => {
-            // Mock data
-            const userId = "1";
             const reservations: ReservationEntity[] = [
-                new ReservationEntity({ id: "1", userId }),
-                new ReservationEntity({ id: "2", userId }),
+                new ReservationEntity({
+                    id: "1",
+                    userId: "665f24eb-89c7-4cfa-ae8b-bd4649a91c43",
+                    _user: new UserEntity({
+                        id: "665f24eb-89c7-4cfa-ae8b-bd4649a91c43",
+                        firstName: "john",
+                        lastName: "sara",
+                    }),
+                    concertId: "78e1d771-7aed-4e51-9e4f-d256d135c914",
+                    _concert: new ConcertEntity({ name: "concert two" }),
+                }),
+                new ReservationEntity({
+                    id: "2",
+                    userId: "665f24eb-89c7-4cfa-ae8b-bd4649a91c43",
+                    _user: new UserEntity({
+                        id: "665f24eb-89c7-4cfa-ae8b-bd4649a91c43",
+                        firstName: "john",
+                        lastName: "sara",
+                    }),
+                    concertId: "3dd6965f-2815-4b5a-b9e6-1d0ab1984f77",
+                    _concert: new ConcertEntity({
+                        name: "concert one",
+                    }),
+                }),
             ];
 
             jest.spyOn(repository, "findByUserId").mockResolvedValue(
                 reservations
             );
 
-            const result = await service.findByUserId(userId);
+            const result = await service.findByUserId(
+                "665f24eb-89c7-4cfa-ae8b-bd4649a91c43"
+            );
 
-            expect(result).toEqual(reservations);
+            expect(result).toEqual(
+                reservations.map((reservation) => ({
+                    reservationId: reservation.id,
+                    concertName: reservation._concert.name,
+                    userFirstName: reservation._user.firstName,
+                    userLastName: reservation._user.lastName,
+                    createdAt: reservation.createdAt,
+                    status: reservation.status,
+                }))
+            );
         });
     });
 });
