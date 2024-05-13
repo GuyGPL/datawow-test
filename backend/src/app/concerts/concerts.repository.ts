@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { ConcertEntity } from "src/app/concerts/entitles/concert.entity";
 import { DeleteResult, Repository } from "typeorm";
+import { ConcertEntity } from "./entitles/concert.entity";
 
 @Injectable()
 export class ConcertsRepository {
@@ -14,19 +14,15 @@ export class ConcertsRepository {
         return this.repository.find({ relations: ["reservations"] });
     }
 
-    async findSummary(): Promise<unknown> {
-        return;
-    }
-
     async findOne(id: string): Promise<ConcertEntity | undefined> {
         return this.repository.findOne({ where: { id } });
     }
 
     async create(concertData: ConcertEntity): Promise<ConcertEntity> {
-        return this.repository.create(concertData);
+        return this.repository.save(concertData);
     }
 
-    async delete(id: string): Promise<void> {
-        this.repository.delete({ id });
+    async delete(id: string): Promise<DeleteResult> {
+        return this.repository.delete({ id });
     }
 }

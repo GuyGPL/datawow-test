@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const concertSchema = z.object({
-    id: z.string().min(1),
+    id: z.string().uuid(),
     name: z.string().min(1),
     description: z.string().optional(),
     seats: z.number().positive(),
@@ -15,4 +15,8 @@ export type ConcertsResponse = {
     totalSeats: number;
     totalReservations: number;
     totalCancellations: number;
+};
+
+export type DeleteConcertsResponse = {
+    affectedRows: number;
 };

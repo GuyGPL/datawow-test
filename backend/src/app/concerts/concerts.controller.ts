@@ -9,13 +9,16 @@ import {
     UsePipes,
 } from "@nestjs/common";
 import { ConcertsService } from "./concerts.service";
-import { ConcertEntity } from "src/app/concerts/entitles/concert.entity";
 import {
     CreateConcertDto,
     createConcertSchema,
 } from "./dto/concert.request.dto";
+import {
+    ConcertsResponse,
+    DeleteConcertsResponse,
+} from "./dto/concert.response.dto";
+import { ConcertEntity } from "./entitles/concert.entity";
 import { ZodValidatorPipe } from "src/validations/zod-validator.pipe";
-import { ConcertsResponse } from "./dto/concert.response.dto";
 
 @Controller("concerts")
 export class ConcertsController {
@@ -37,7 +40,7 @@ export class ConcertsController {
     @Delete(":concertId")
     async delete(
         @Param("concertId", ParseUUIDPipe) concertId: string
-    ): Promise<void> {
+    ): Promise<DeleteConcertsResponse> {
         return await this.concertService.delete(concertId);
     }
 }

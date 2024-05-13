@@ -1,10 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { ConcertsRepository } from "./concerts.repository";
-import { ConcertEntity } from "src/app/concerts/entitles/concert.entity";
 import { CreateConcertDto } from "./dto/concert.request.dto";
+import {
+    ConcertsResponse,
+    DeleteConcertsResponse,
+} from "./dto/concert.response.dto";
+import { ConcertEntity } from "./entitles/concert.entity";
 import { ReservationStatusEnum } from "src/enums/reservation-status.enum";
-import { ReservationEntity } from "src/app/reservations/entities/reservation.entity";
-import { ConcertsResponse } from "./dto/concert.response.dto";
+import { ReservationEntity } from "../reservations/entities/reservation.entity";
+import { DeleteResult } from "typeorm";
 
 @Injectable()
 export class ConcertsService {
@@ -65,7 +69,8 @@ export class ConcertsService {
         return this.concertRepository.create(concert);
     }
 
-    async delete(concertId: string): Promise<void> {
-        this.concertRepository.delete(concertId);
+    async delete(concertId: string): Promise<DeleteConcertsResponse> {
+        const { affected } = await this.concertRepository.delete(concertId);
+        return { affectedRows: affected };
     }
 }
