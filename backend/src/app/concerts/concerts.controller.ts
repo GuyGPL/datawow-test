@@ -9,7 +9,7 @@ import {
     UsePipes,
 } from "@nestjs/common";
 import { ConcertsService } from "./concerts.service";
-import { ConcertEntity } from "src/concerts/entitles/concert.entity";
+import { ConcertEntity } from "src/app/concerts/entitles/concert.entity";
 import {
     CreateConcertDto,
     createConcertSchema,

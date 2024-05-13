@@ -4,7 +4,7 @@ import { ConcertsService } from "./concerts.service";
 import { ConcertsRepository } from "./concerts.repository";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConcertEntity } from "./entitles/concert.entity";
-import { ReservationEntity } from "src/reservations/entities/reservation.entity";
+import { ReservationEntity } from "src/app/reservations/entities/reservation.entity";
 
 @Module({
     imports: [TypeOrmModule.forFeature([ConcertEntity, ReservationEntity])],

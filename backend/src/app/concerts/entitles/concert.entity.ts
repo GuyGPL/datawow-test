@@ -1,4 +1,4 @@
-import { ReservationEntity } from "src/reservations/entities/reservation.entity";
+import { ReservationEntity } from "src/app/reservations/entities/reservation.entity";
 import {
     Entity,
     Column,

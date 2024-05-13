@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { ConcertsRepository } from "./concerts.repository";
-import { ConcertEntity } from "src/concerts/entitles/concert.entity";
+import { ConcertEntity } from "src/app/concerts/entitles/concert.entity";
 import { CreateConcertDto } from "./dto/concert.request.dto";
-import { ReservationEnum } from "src/enums/reservation-status.enum";
-import { ReservationEntity } from "src/reservations/entities/reservation.entity";
+import { ReservationStatusEnum } from "src/enums/reservation-status.enum";
+import { ReservationEntity } from "src/app/reservations/entities/reservation.entity";
 import { ConcertsResponse } from "./dto/concert.response.dto";
 
 @Injectable()
@@ -20,10 +20,12 @@ export class ConcertsService {
         concerts.map((concert) => {
             totalSeats += concert.seats;
             totalReservations += concert.reservations.filter(
-                (reservation) => reservation.status === ReservationEnum.RESERVED
+                (reservation) =>
+                    reservation.status === ReservationStatusEnum.RESERVED
             ).length;
             totalCancellations += concert.reservations.filter(
-                (reservation) => reservation.status === ReservationEnum.CANCELED
+                (reservation) =>
+                    reservation.status === ReservationStatusEnum.CANCELED
             ).length;
 
             const latestReservations: { [userId: string]: ReservationEntity } =
@@ -43,7 +45,8 @@ export class ConcertsService {
             const latestReservationsCount = Object.values(
                 latestReservations
             ).filter(
-                (reservation) => reservation.status === ReservationEnum.RESERVED
+                (reservation) =>
+                    reservation.status === ReservationStatusEnum.RESERVED
             ).length;
 
             concert["isFull"] = concert.seats < latestReservationsCount;

@@ -1,8 +1,8 @@
 // reservation.entity.ts
 
-import { ConcertEntity } from "src/concerts/entitles/concert.entity";
-import { ReservationEnum } from "src/enums/reservation-status.enum";
-import { UserEntity } from "src/users/entities/user.entity";
+import { ConcertEntity } from "src/app/concerts/entitles/concert.entity";
+import { ReservationStatusEnum } from "src/enums/reservation-status.enum";
+import { UserEntity } from "src/app/users/entities/user.entity";
 import {
     Entity,
     Column,
@@ -33,9 +33,9 @@ export class ReservationEntity {
 
     @Column({
         type: "enum",
-        enum: ReservationEnum,
+        enum: ReservationStatusEnum,
     })
-    status: ReservationEnum;
+    status: ReservationStatusEnum;
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     createdAt: Date;

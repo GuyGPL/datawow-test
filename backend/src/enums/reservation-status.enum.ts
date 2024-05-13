@@ -1,4 +1,4 @@
-export enum ReservationEnum {
+export enum ReservationStatusEnum {
     RESERVED = "reserved",
     CANCELED = "canceled",
 }
