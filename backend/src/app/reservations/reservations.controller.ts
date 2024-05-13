@@ -13,8 +13,8 @@ import {
     CreateReservationDto,
     createReservationSchema,
 } from "./dto/reservation.request.dto";
-import { ZodValidatorPipe } from "src/validations/zod-validator.pipe";
 import { ReservationEntity } from "./entities/reservation.entity";
+import { ZodValidatorPipe } from "src/validations/zod-validator.pipe";
 
 @Controller("reservations")
 export class ReservationsController {

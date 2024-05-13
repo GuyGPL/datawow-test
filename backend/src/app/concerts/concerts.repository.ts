@@ -19,7 +19,7 @@ export class ConcertsRepository {
     }
 
     async create(concertData: ConcertEntity): Promise<ConcertEntity> {
-        return this.repository.save(concertData);
+        return this.repository.create(concertData);
     }
 
     async delete(id: string): Promise<DeleteResult> {

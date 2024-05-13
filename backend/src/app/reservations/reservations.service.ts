@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { CreateReservationDto } from "./dto/reservation.request.dto";
 import { ReservationEntity } from "./entities/reservation.entity";
 import { ReservationsRepository } from "./reservations.repository";
-import { ReservationStatusEnum } from "src/enums/reservation-status.enum";
 
 @Injectable()
 export class ReservationsService {
