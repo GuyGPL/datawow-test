@@ -1,22 +1,24 @@
 import {
-    ConcertListResponse,
-    ConcertSummaryResponse,
+    ConcertsResponse,
     CreateConcertBodyRequest,
-} from "@/types/concerts.dto";
+    DeleteConcertsResponse,
+} from "@/types/concerts.response.dto";
 import axios from "axios";
 
-export const fetchConcertList = async (): Promise<ConcertListResponse> => {
-    return await axios.get("/concerts").then(({ data }) => data);
+export const fetchConcerts = async (): Promise<ConcertsResponse> => {
+    return await axios
+        .get("http://localhost:3001/concerts")
+        .then(({ data }) => {
+            console.log(data);
+            return data;
+        });
 };
 
-export const fetchConcertSummary =
-    async (): Promise<ConcertSummaryResponse> => {
-        return await axios.get("/concerts/summary").then(({ data }) => data);
-    };
-
-export const removeConcert = async (concertId: string): Promise<unknown> => {
+export const removeConcert = async (
+    concertId: string
+): Promise<DeleteConcertsResponse> => {
     return await axios
-        .delete(`/concerts/${concertId}`, {
+        .delete(`http://localhost:3001/concerts/${concertId}`, {
             headers: { "Content-Type": "application/json" },
         })
         .then(({ data }) => data);
@@ -25,5 +27,7 @@ export const removeConcert = async (concertId: string): Promise<unknown> => {
 export const createConcert = async (
     body: CreateConcertBodyRequest
 ): Promise<unknown> => {
-    return await axios.post(`/concerts/create`, body).then(({ data }) => data);
+    return await axios
+        .post(`http://localhost:3001/concerts/create`, body)
+        .then(({ data }) => data);
 };
