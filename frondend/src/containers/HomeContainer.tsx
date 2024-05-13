@@ -10,6 +10,9 @@ import { MdOutlineCancel } from "react-icons/md";
 import { PiMedalLight } from "react-icons/pi";
 import "./HomeContainer.scss";
 
+const MOCK_DESCRIPTION =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus convallis massa non ligula interdum, non commodo augue imperdiet. Proin auctor.";
+
 export default function HomeContainer(): ReactElement {
     const { isAdmin } = useRole();
     const { notificationSuccess, notificationError } = useNotification();
@@ -21,7 +24,6 @@ export default function HomeContainer(): ReactElement {
     );
 
     const handleOnDelete = (concertId: string): void => {
-        console.log("onDelete run");
         // TODO call api delete data
 
         setModalVisible(false);
@@ -30,14 +32,20 @@ export default function HomeContainer(): ReactElement {
     };
 
     const handleOnSubmit = (concertId: string, isSelected: boolean): void => {
-        console.log("onSubmit run");
-
         if (isSelected) {
-            // TODO call api cancel api
-            notificationSuccess("Reservation canceled");
+            try {
+                // TODO call api cancel api in useConcert
+                notificationSuccess("Reservation canceled");
+            } catch {
+                notificationError("Something went wrong, please try again");
+            }
         } else {
-            // TODO call api reserve api
-            notificationSuccess("Reservation successful");
+            try {
+                // TODO call api reserve api in useConcert
+                notificationSuccess("Reservation successful");
+            } catch {
+                notificationError("Something went wrong, please try again");
+            }
         }
     };
 
@@ -86,7 +94,7 @@ export default function HomeContainer(): ReactElement {
                     {activeTab === "overview" && (
                         <ConcertInfoBox
                             title="concert one"
-                            description="test"
+                            description={MOCK_DESCRIPTION}
                             totalSeats={2000}
                             disabled={false}
                             handleOnClick={() => {
@@ -113,13 +121,23 @@ export default function HomeContainer(): ReactElement {
             />
         </div>
     ) : (
-        <ConcertInfoBox
-            title="concert one"
-            description="test"
-            totalSeats={2000}
-            disabled={false}
-            isSelected={true}
-            handleOnClick={() => handleOnSubmit("click submit", true)}
-        />
+        <div className="concert-list">
+            <ConcertInfoBox
+                title="concert one"
+                description={MOCK_DESCRIPTION}
+                totalSeats={2000}
+                disabled={false}
+                isSelected={true}
+                handleOnClick={() => handleOnSubmit("click submit", true)}
+            />
+            <ConcertInfoBox
+                title="concert one"
+                description={MOCK_DESCRIPTION}
+                totalSeats={2000}
+                disabled={false}
+                isSelected={false}
+                handleOnClick={() => handleOnSubmit("click submit", false)}
+            />
+        </div>
     );
 }
