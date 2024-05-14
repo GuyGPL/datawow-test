@@ -9,6 +9,7 @@ The frontend of the application is developed using Next.js, featuring a responsi
 Below is the structure of the frontend directory:
 
 -   **app:** This folder contains the Next.js application. It uses the `pages` directory to handle routing.
+-   **contexts** Contains context management to efficiently manage and share state across application
 -   **components:** Contains reusable React components used across the application.
 -   **containers:** Contains container components for each page. Container components are responsible for fetching data and passing it down to presentational components.
 -   **enums:** Contains enums used throughout the frontend application.
