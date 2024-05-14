@@ -1,9 +1,9 @@
 import { useNotification } from "@/contexts/NotificationContext";
 import React from "react";
-import { STATES } from "@/constants/notification-type";
 import { MdCancel } from "react-icons/md";
 import "./Notification.scss";
 import { FaCheckCircle } from "react-icons/fa";
+import { ReservationStatusEnum } from "@/enums/reservation-status.enum";
 
 export default function Notification() {
     const { notificationType, message } = useNotification();
@@ -11,7 +11,7 @@ export default function Notification() {
         notificationType && (
             <div className={`notification ${notificationType}`}>
                 <div className="notification-context">
-                    {notificationType === STATES.SUCCESS ? (
+                    {notificationType === ReservationStatusEnum.RESERVED ? (
                         <FaCheckCircle />
                     ) : (
                         <MdCancel />

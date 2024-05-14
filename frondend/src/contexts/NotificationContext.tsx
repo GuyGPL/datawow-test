@@ -1,5 +1,5 @@
 import Notification from "@/components/notification/Notification";
-import { STATES } from "@/constants/notification-type";
+import { ReservationStatusEnum } from "@/enums/reservation-status.enum";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
 type NotificationContextValues = {
@@ -22,13 +22,13 @@ export const NotificationProvider = ({ children }: PropsWithChildren) => {
 
     const notificationSuccess = (text: string, duration?: number) => {
         setMessage(text);
-        setNotificationType(STATES.SUCCESS);
+        setNotificationType(ReservationStatusEnum.RESERVED);
         clear(duration);
     };
 
     const notificationError = (text: string, duration?: number) => {
         setMessage(text);
-        setNotificationType(STATES.ERROR);
+        setNotificationType(ReservationStatusEnum.CANCELED);
         clear(duration);
     };
 
