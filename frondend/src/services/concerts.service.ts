@@ -1,6 +1,6 @@
+import { CreateConcertBodyRequest } from "@/types/concerts.request.dto";
 import {
     ConcertsResponse,
-    CreateConcertBodyRequest,
     DeleteConcertsResponse,
 } from "@/types/concerts.response.dto";
 import axios from "axios";

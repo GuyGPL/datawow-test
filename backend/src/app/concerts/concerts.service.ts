@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ConcertsRepository } from "./concerts.repository";
-import { CreateConcertDto } from "./dto/concert.request.dto";
+import { CreateConcertBodyRequest } from "./dto/concert.request.dto";
 import {
     ConcertsResponse,
     DeleteConcertsResponse,
@@ -64,7 +64,9 @@ export class ConcertsService {
         };
     }
 
-    async create(createItemDto: CreateConcertDto): Promise<ConcertEntity> {
+    async create(
+        createItemDto: CreateConcertBodyRequest
+    ): Promise<ConcertEntity> {
         const concert = new ConcertEntity(createItemDto);
         return this.concertRepository.create(concert);
     }

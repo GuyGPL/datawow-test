@@ -10,7 +10,7 @@ import {
 } from "@nestjs/common";
 import { ConcertsService } from "./concerts.service";
 import {
-    CreateConcertDto,
+    CreateConcertBodyRequest,
     createConcertSchema,
 } from "./dto/concert.request.dto";
 import {
@@ -32,7 +32,7 @@ export class ConcertsController {
     @Post()
     @UsePipes(new ZodValidatorPipe(createConcertSchema))
     async create(
-        @Body() createConcertDto: CreateConcertDto
+        @Body() createConcertDto: CreateConcertBodyRequest
     ): Promise<ConcertEntity> {
         return await this.concertService.create(createConcertDto);
     }

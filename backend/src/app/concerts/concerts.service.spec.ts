@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { ConcertsService } from "./concerts.service";
-import { CreateConcertDto } from "./dto/concert.request.dto";
+import { CreateConcertBodyRequest } from "./dto/concert.request.dto";
 import { ConcertEntity } from "./entitles/concert.entity";
 import { ConcertsRepository } from "./concerts.repository";
 import { ReservationStatusEnum } from "src/enums/reservation-status.enum";
@@ -80,7 +80,7 @@ describe("ConcertsService", () => {
 
     describe("create", () => {
         it("should create a concert", async () => {
-            const createConcertDto: CreateConcertDto = {
+            const createConcertDto: CreateConcertBodyRequest = {
                 name: "New Concert",
                 seats: 150,
             };
