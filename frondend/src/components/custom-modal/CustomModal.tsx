@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import "./CustomModal.scss";
 import { MdCancel } from "react-icons/md";
 

@@ -1,7 +1,5 @@
 import { ReactElement } from "react";
 import "./CustomButton.scss";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { IoSaveOutline } from "react-icons/io5";
 import { IconType } from "react-icons";
 type CustomButtonProps = {
     icon: IconType | null;
@@ -26,7 +24,7 @@ export default function CustomButton({
             onClick={onClick}
             disabled={disabled}
         >
-            {Icon && <Icon />}
+            {Icon && <Icon size={24} />}
             <span>{label}</span>
         </button>
     );

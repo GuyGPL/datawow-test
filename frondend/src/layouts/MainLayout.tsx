@@ -1,5 +1,5 @@
 // MainLayout.tsx
-import { ReactElement, ReactNode, useState } from "react";
+import { ReactElement, ReactNode } from "react";
 import "./MainLayout.scss";
 import { useRouter } from "next/navigation";
 import { SETTING_SIDE_MENUS, SideMenu } from "./configs/side-bar-menu";

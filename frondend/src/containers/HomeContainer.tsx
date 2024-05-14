@@ -1,7 +1,7 @@
 import ConcertInfoBox from "@/components/concert-info-box/ConcertInfoBox";
 import CustomModal from "@/components/custom-modal/CustomModal";
 import LabelWithNumberBox from "@/components/label-with-number-box/LabelWithNumberBox";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 import { IoPersonOutline } from "react-icons/io5";
 import ConcertFormBox from "@/components/concert-form-box/ConcertFormBox";
 import { useRole } from "@/contexts/UserContext";
